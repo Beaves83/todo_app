@@ -1,6 +1,15 @@
 from fastapi import FastAPI 
+import psycopg2
 
 app = FastAPI()
+
+db_connection = psycopg2.connect(
+    host="localhost",
+    port="5432",
+    user="root",
+    password="root",
+    database="todo_app"
+)
 
 @app.get("/items")
 async def get_items():
