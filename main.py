@@ -13,7 +13,22 @@ db_connection = psycopg2.connect(
 
 @app.get("/items")
 async def get_items():
+    cursor = db_connection.cursor()
+
+    get_query = "SELECT * FROM items ORDER BY id"
+    cursor.execute(get_query)
+
     items = []
+    for row in cursor.fetchall():
+        item = {
+            "id": row[0],
+            "title": row[1],
+            "description": row[2],
+            "completed": row[3],
+        }
+        items.append(item)
+
+    cursor.close(); 
     return items
 
 @app.post("/items")
