@@ -18,3 +18,8 @@ async def delete_item(item_id: int):
 @app.put("/items/{item_id}")
 async def update_item(item_id: int, item: dict):
     return {"message": f"Item {item_id} updated successfully"}
+
+if __name__ == "__main__":
+    import uvicorn
+
+    uvicorn.run(app, host="0.0.0.0", port=8000)
