@@ -50,8 +50,6 @@ const deleteItem = (itemId: number) => {
 };
 
 const updateItem = (item: Item) => {
-  console.log("elemento a actualizar", item.id);
-
   axios
     .put(`http://localhost:8000/items/${item.id}`, item)
     .then(() => {
