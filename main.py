@@ -33,6 +33,13 @@ async def get_items():
 
 @app.post("/items")
 async def create_item(item: dict):
+    cursor = db_connection.cursor()
+
+    insert_query = "INSERT INTO items (title, description) VALUES (%s, %s)"
+    cursor.execute(insert_query, (item["title"], item["description"]))
+
+    db_connection.commit()
+    cursor.close()
     return {"message": "Item created successfully"}
 
 @app.delete("/items/{item_id}")
