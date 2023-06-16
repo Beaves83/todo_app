@@ -56,6 +56,13 @@ async def delete_item(item_id: int):
 
 @app.put("/items/{item_id}")
 async def update_item(item_id: int, item: dict):
+    cursor = db_connection.cursor()
+
+    update_query = "UPDATE items SET title = %s, description = %s, completed = %s WHERE id = %s"
+    cursor.execute(update_query, (item["title"], item["description"], item["completed"], item_id))
+
+    db_connection.commit()
+    cursor.close()
     return {"message": f"Item {item_id} updated successfully"}
 
 if __name__ == "__main__":
