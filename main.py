@@ -1,7 +1,16 @@
 from fastapi import FastAPI 
+from fastapi.middleware.cors import CORSMiddleware
 import psycopg2
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:8080"],
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "PUT", "DELETE"],
+    allow_headers=["*"],
+)
 
 db_connection = psycopg2.connect(
     host="localhost",
