@@ -24,29 +24,28 @@ Before getting started, make sure you have the following requirements installed:
    ```shell
    pip install -r backend/requirements.txt
 
-4. Inicia el servidor backend ejecutando el siguiente comando:
+4. Start the backend server by executing the following command:
 
- ```shell
+   ```shell
    uvicorn main:app --reload
 
-El servidor backend estará disponible en `http://localhost:8000`.
+The backend server will be available at `http://localhost:8000`.
 
-## Configuración del Frontend
+## Frontend configuration
 
-1. Abre el archivo `frontend/src/api/index.ts` y actualiza la URL base de la API en la constante `baseURL` con la dirección del servidor backend (`http://localhost:8000` por defecto).
-2. Ejecuta el siguiente comando en la terminal para instalar las dependencias del frontend:
+1. Open the file `frontend/src/api/index.ts` and updates the API base URL in the `baseURL` constant with the address of the backend server (`http://localhost:8080` por defecto).
+2. Run the following command in the terminal to install the frontend dependencies:
 
- ```shell
+   ```shell
    npm install
 
-3. Inicia el servidor de desarrollo del frontend ejecutando el siguiente comando:
+3. Start the frontend development server by executing the following command:
 
-
- ```shell
+   ```shell
    npm run serve
 
-   El servidor de desarrollo del frontend estará disponible en `http://localhost:8080`.
+   The frontend development server will be available at `http://localhost:8080`.
 
-## Uso de la Aplicación
+## Use of the Application
 
-Accede a la aplicación en tu navegador en `http://localhost:8080`. Verás la lista de tareas existentes y podrás agregar nuevas tareas, eliminar tareas y actualizar tareas.
+Access the application in your browser at `http://localhost:8080`. You will see the list of existing tasks and will be able to add new tasks, delete tasks and update tasks.
