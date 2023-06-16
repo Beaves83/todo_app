@@ -44,6 +44,14 @@ async def create_item(item: dict):
 
 @app.delete("/items/{item_id}")
 async def delete_item(item_id: int):
+    cursor = db_connection.cursor()
+
+    delete_query = "DELETE FROM items WHERE id = %s"
+    cursor.execute(delete_query, (item_id,))
+
+    db_connection.commit()
+    cursor.close()
+
     return {"message": f"Item {item_id} deleted successfully"}
 
 @app.put("/items/{item_id}")
