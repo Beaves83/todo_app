@@ -44,7 +44,7 @@ The backend server will be available at `http://localhost:8000`.
    ```shell
    npm run serve
 
-   The frontend development server will be available at `http://localhost:8080`.
+The frontend development server will be available at `http://localhost:8080`.
 
 ## Use of the Application
 
