@@ -212,12 +212,14 @@ fetchItems();
 
 .add-item__label {
   font-weight: bold;
+  margin-right: 20px;
 }
 
 .add-item__input {
   padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 4px;
+  width: 100%;
 }
 
 .add-item__button {
