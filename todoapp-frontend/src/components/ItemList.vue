@@ -3,10 +3,15 @@ import { ref, computed } from "vue";
 import axios from "axios";
 import { Item } from "./types";
 
+// Constants
+const url = "http://localhost:8000/items";
+
+// Data
 const items = ref<Item[]>([]);
 const newItem = ref<Item>({ title: "", description: "", completed: false });
 const searchQuery = ref("");
 
+// Computeds
 const filteredItems = computed(() => {
   return items.value.filter(
     (item) =>
@@ -15,9 +20,10 @@ const filteredItems = computed(() => {
   );
 });
 
+// Methods
 const fetchItems = () => {
   axios
-    .get("http://localhost:8000/items")
+    .get(url)
     .then((response) => {
       items.value = response.data;
     })
@@ -28,7 +34,7 @@ const fetchItems = () => {
 
 const addItem = () => {
   axios
-    .post("http://localhost:8000/items", newItem.value)
+    .post(url, newItem.value)
     .then(() => {
       fetchItems();
       newItem.value = { title: "", description: "", completed: false };
@@ -40,7 +46,7 @@ const addItem = () => {
 
 const deleteItem = (itemId: number) => {
   axios
-    .delete(`http://localhost:8000/items/${itemId}`)
+    .delete(`${url}/${itemId}`)
     .then(() => {
       fetchItems();
     })
@@ -51,7 +57,7 @@ const deleteItem = (itemId: number) => {
 
 const updateItem = (item: Item) => {
   axios
-    .put(`http://localhost:8000/items/${item.id}`, item)
+    .put(`${url}/${item.id}`, item)
     .then(() => {
       fetchItems();
     })
@@ -65,10 +71,10 @@ fetchItems();
 
 <template>
   <div class="container">
-    <h1 class="title">ToDo List</h1>
+    <h1 class="title">ToDo list</h1>
 
     <div class="search">
-      <h2 class="search__title">Search Items</h2>
+      <h2 class="search__title">Search items</h2>
       <input
         type="text"
         v-model="searchQuery"
@@ -130,7 +136,7 @@ fetchItems();
     </table>
     <div class="add-item">
       <div class="add-item__header">
-        <h3 class="add-item__title">Add New Item</h3>
+        <h3 class="add-item__title">Add new item</h3>
       </div>
       <form @submit.prevent="addItem" class="add-item__form">
         <div class="add-item__form-group">
@@ -151,7 +157,7 @@ fetchItems();
             class="add-item__input"
           />
         </div>
-        <button type="submit" class="add-item__button">Add Item</button>
+        <button type="submit" class="add-item__button">Add item</button>
       </form>
     </div>
   </div>
