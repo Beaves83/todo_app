@@ -23,17 +23,14 @@ Before getting started, make sure you have the following requirements installed:
    ```shell
    sudo apt-get install python3-pip
 4. Run the following command in the terminal to install the backend dependencies:
-
    ```shell
    pip install -r fastapi-env/requirements.txt
 5. We create the environment and activate it
-
- ```shell
+   ```shell
    python3 -m venv fastapi-env
    source fastapi-env/bin/activate
    
 6. Start the backend server by executing the following command:
-
    ```shell
    uvicorn main:app --reload
 
