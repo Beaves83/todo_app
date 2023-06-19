@@ -2,14 +2,13 @@
 import { ref, computed } from "vue";
 import axios from "axios";
 import { Item } from "./types";
+import SearchInput from "./SearchInput.vue";
 
 // Constants
-const url = "http://localhost:8000/items";
-
-// Data
+const searchQuery = ref("");
 const items = ref<Item[]>([]);
 const newItem = ref<Item>({ title: "", description: "", completed: false });
-const searchQuery = ref("");
+const url = "http://localhost:8000/items";
 
 // Computeds
 const filteredItems = computed(() => {
@@ -67,21 +66,17 @@ const updateItem = (item: Item) => {
 };
 
 fetchItems();
+
+const updateSearchQuery = (newValue: string) => {
+  searchQuery.value = newValue;
+};
 </script>
 
 <template>
   <div class="container">
     <h1 class="title">ToDo list</h1>
 
-    <div class="search">
-      <h2 class="search__title">Search items</h2>
-      <input
-        type="text"
-        v-model="searchQuery"
-        class="search__input w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-400"
-        placeholder="Search"
-      />
-    </div>
+    <SearchInput @updateSearchQuery="updateSearchQuery" v-model="searchQuery" />
 
     <table class="table__item min-w-max w-full table-auto">
       <thead>
@@ -172,21 +167,6 @@ fetchItems();
   font-size: 2rem;
   font-weight: bold;
   margin: 2rem;
-}
-
-.search {
-  margin-bottom: 1rem;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.search__input {
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 300px;
-  margin-left: 10px;
 }
 
 .add-item {
