@@ -19,12 +19,20 @@ Before getting started, make sure you have the following requirements installed:
 
 1. Create a database in PostgreSQL for the application. You can use the `pgAdmin` tool or any other PostgreSQL administration interface.
 2. Open the `backend/main.py` file and update the database connection details in the `db_connection` variable.
-3. Run the following command in the terminal to install the backend dependencies:
+3.Install the pip package if necessary:
+   ```shell
+   sudo apt-get install python3-pip
+4. Run the following command in the terminal to install the backend dependencies:
 
    ```shell
-   pip install -r backend/requirements.txt
+   pip install -r fastapi-env/requirements.txt
+5. We create the environment and activate it
 
-4. Start the backend server by executing the following command:
+ ```shell
+   python3 -m venv fastapi-env
+   source fastapi-env/bin/activate
+   
+6. Start the backend server by executing the following command:
 
    ```shell
    uvicorn main:app --reload
